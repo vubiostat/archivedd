@@ -128,6 +128,8 @@ ARCD <- R6Class("ARCD",
     diff = function(tnameA, tnameB, file_name = NULL) {
       dA <- self$get(tnameA)
       dB <- self$get(tnameB)
+      dA[is.na(dA)] <- ''
+      dB[is.na(dB)] <- ''
       tA <- as.data.frame(lapply(dA, htmltools::htmlEscape))
       tB <- as.data.frame(lapply(dB, htmltools::htmlEscape))
       cdiff <- compareDF::compare_df(tA, tB, 'form_name')
